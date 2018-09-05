@@ -1,0 +1,2 @@
+message = 'wanker'
+print(message)
