@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Retrieve and print words from a URL.
+
+Usage:
+
+    python3 words.py <URL>
 """
 
 import sys
@@ -24,7 +28,7 @@ def fetch_words(url):
     return story_words
 
 
-def print_words(items):
+def print_items(items):
     """Print items one per line.
 
     Args:
@@ -41,7 +45,7 @@ def main(url):
         url: The URL of a UTF-8 text document.
     """
     words = fetch_words(url)
-    print_words(words)
+    print_items(words)
 
 
 if __name__ == '__main__':
