@@ -2,12 +2,14 @@
 A module for demonstrationg exceptions.
 '''
 
+import sys
+
 def convert(s):
     '''Convert to an integer.'''
-    x = -1
     try:
-        x = int(s)
-        print('Conversion succeeded! x =', x)
-    except (ValueError, TypeError):
-        print("Conversion failed!")
-    return x
+        return int(s)
+    except (ValueError, TypeError) as ex:
+        print('Conversion error: {}' \
+            .format(str(ex)),
+            file=sys.stderr)
+        return -1
