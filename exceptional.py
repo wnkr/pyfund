@@ -3,6 +3,7 @@ A module for demonstrationg exceptions.
 '''
 
 import sys
+from math import log
 
 def convert(s):
     '''Convert to an integer.'''
@@ -12,4 +13,8 @@ def convert(s):
         print('Conversion error: {}' \
             .format(str(ex)),
             file=sys.stderr)
-        return -1
+        raise
+
+def string_log(s):
+    v = convert(s)
+    return log(v)
