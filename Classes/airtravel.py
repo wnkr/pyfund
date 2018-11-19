@@ -109,32 +109,54 @@ class Flight:
                    for row in self._seating
                    if row is not None)
 
-class Aircraft:
 
-    def __init__(self, registration, model, num_rows, num_seats_per_row):
+class Aircraft():
+    
+    def __init__(self, registration):
         self._registration = registration
-        self._model = model
-        self._num_rows = num_rows
-        self._num_seats_per_row = num_seats_per_row
 
     def registration(self):
         return self._registration
 
+    def num_seats(self): 
+        rows, row_seats = self.seating_plan()
+        return len(rows) * len(row_seats)
+
+
+class AirbusA319(Aircraft):
+
     def model(self):
-        return self._model
+        return "Airbus A319"
 
     def seating_plan(self):
-        return (range(1, self._num_rows + 1),
-                "ABCDEFGHJK"[:self._num_seats_per_row])
+        return range(1, 23), "ABCDEF"
 
-def make_flight():
-    f = Flight("BA758", Aircraft("G-eup", "Airbus 123", 22, 6))
+        
+class Boeing777(Aircraft):
+
+    def model(self):
+        return "Boeing 777"
+
+    def seating_plan(self):
+        # For simplicity's sake, we ignore complex
+        # seating arrangement for first-class
+        return range(1, 56), "ABCDEGHJK"
+
+
+def make_flights():
+    f = Flight("BA758", AirbusA319("G-EUPT"))
     f.allocate_seat("12A", "Ivan T")
     f.allocate_seat("15F", "Mimi H")
     f.allocate_seat("12E", "Andrew P")
     f.allocate_seat("1D", "Ritchie Rich")
 
-    return f
+    g = Flight("AF72", Boeing777("F-GSPS"))
+    g.allocate_seat("55K", "Pe6o")
+    g.allocate_seat("33G", "Go6o")
+    g.allocate_seat("4B", "To6o")
+    g.allocate_seat("4A", "Yamamo6o")
+
+    return f, g
 
 def console_card_printer(passenger, seat, flight_number, aircraft):
     output = "| Name: {0}"          \
@@ -150,8 +172,9 @@ def console_card_printer(passenger, seat, flight_number, aircraft):
     print()
     
 def main():
-    f = make_flight()
+    f, g = make_flights()
     print(f.num_available_seats())
+    print(g.num_available_seats())
 
 if __name__ == '__main__':
     main()
