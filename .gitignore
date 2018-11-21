@@ -12,6 +12,10 @@ node_modules
 *.noseids
 .vscode-test
 __pycache__
+build/
+dist/
+MANIFEST
+*_env/
 npm-debug.log
 **/.mypy_cache/**
 !yarn.lock
