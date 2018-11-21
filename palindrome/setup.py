@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='palindrome',
     version='1.0',
-    py_modules=['palindrone'],
+    py_modules=['palindrome'],
 
     # metadata
     author='Ivan Trendafilov',
